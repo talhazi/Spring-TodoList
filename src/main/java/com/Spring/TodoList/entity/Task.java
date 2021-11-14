@@ -1,16 +1,18 @@
 package com.Spring.TodoList.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 import java.util.Date;
 
 @Entity
+@Table(name = "Tasks")
 public class Task {
 
+    @Column(name = "id")
     @Id
     private String id;
 
-    //private String ownerId;
+    private String ownerId;
     private boolean status = Boolean.FALSE;
     private String details;
     private Date dueDate;
