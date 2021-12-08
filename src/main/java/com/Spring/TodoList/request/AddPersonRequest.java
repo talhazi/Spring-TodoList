@@ -8,9 +8,6 @@ public class AddPersonRequest {
         return name;
     }
 
-    public AddPersonRequest() {
-    }
-
     public AddPersonRequest(String name, String email, String favoriteProgrammingLanguage) {
         this.name = name;
         this.email = email;
