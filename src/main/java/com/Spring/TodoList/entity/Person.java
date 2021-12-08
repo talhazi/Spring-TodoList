@@ -1,8 +1,6 @@
 package com.Spring.TodoList.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,30 +8,31 @@ import java.util.List;
 public class Person {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private String name;
     private String email;
     private String favoriteProgrammingLanguage;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Task> todoList = new ArrayList<>();
 
     public Person() {
     }
 
-    public Person(String id, String name, String email, String favoriteProgrammingLanguage) {
+    public Person(Integer id, String name, String email, String favoriteProgrammingLanguage) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

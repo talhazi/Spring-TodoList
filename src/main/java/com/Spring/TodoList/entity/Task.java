@@ -8,7 +8,8 @@ import java.util.Date;
 public class Task {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private String ownerId;
     private boolean status = Boolean.FALSE;
@@ -18,18 +19,18 @@ public class Task {
     public Task() {
     }
 
-    public Task(String id, boolean status, String details, Date dueDate) {
+    public Task(Integer id, boolean status, String details, Date dueDate) {
         this.id = id;
         this.status = status;
         this.details = details;
         this.dueDate = dueDate;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
