@@ -22,12 +22,11 @@ public class Person {
     public Person() {
     }
 
-    public Person(String id, String name, String email, String favoriteProgrammingLanguage, List<Task> todoList) {
+    public Person(String id, String name, String email, String favoriteProgrammingLanguage) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
-        this.todoList = todoList;
     }
 
     public String getId() {

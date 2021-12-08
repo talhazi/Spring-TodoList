@@ -18,7 +18,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(String id, String ownerId, boolean status, String details, Date dueDate) {
+    public Task(String id, boolean status, String details, Date dueDate) {
         this.id = id;
         this.status = status;
         this.details = details;
@@ -33,12 +33,24 @@ public class Task {
         this.id = id;
     }
 
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public boolean isStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public boolean getStatus() {
+        return status;
     }
 
     public String getDetails() {

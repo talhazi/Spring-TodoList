@@ -39,5 +39,20 @@ public class PersonController {
     @PostMapping("/tasks/{taskId}")
     public void toggleTaskCompleted(@PathVariable String taskId){
         Task task = taskRepository.findById(taskId).orElseThrow(NoSuchElementException::new);
+        task.setStatus(!task.getStatus());
+        taskRepository.save(task);
     }
+
+    @DeleteMapping("/{personId}")
+    public void deletePerson(@PathVariable String personId){
+        Person person = personRepository.findById(personId).orElseThrow(NoSuchElementException::new);
+        personRepository.delete(person);
+    }
+
+    @DeleteMapping("/{taskId}")
+    public void deleteTask(@PathVariable String taskId){
+        Task task = taskRepository.findById(taskId).orElseThrow(NoSuchElementException::new);
+        taskRepository.delete(task);
+    }
+
 }
