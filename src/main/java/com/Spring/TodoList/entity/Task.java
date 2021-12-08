@@ -5,10 +5,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Tasks")
 public class Task {
 
-    @Column(name = "id")
     @Id
     private String id;
 
