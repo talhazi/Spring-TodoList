@@ -6,6 +6,7 @@ import com.Spring.TodoList.repository.PersonRepository;
 import com.Spring.TodoList.repository.TaskRepository;
 import com.Spring.TodoList.request.AddPersonRequest;
 import com.Spring.TodoList.request.AddTaskRequest;
+import com.Spring.TodoList.request.UpdatePersonRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,9 +45,13 @@ public class PersonController {
 
 
     @PatchMapping("/{personId}")
-    public void updatePersonById(@PathVariable String personId){
+    public void updatePersonById(@PathVariable String personId, UpdatePersonRequest newDetails){
+        // we need to add check that the fields are not null
         Person person = personRepository.findById(personId).orElseThrow(NoSuchElementException::new);
-        //to update details
+        person.setEmail(newDetails.getEmail());
+        person.setFavoriteProgrammingLanguage(newDetails.getFavoriteProgrammingLanguage());
+        person.setName(newDetails.getName());
+
     }
 
     @DeleteMapping("/{personId}")
