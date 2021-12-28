@@ -3,6 +3,7 @@ package com.Spring.TodoList.request;
 public class AddPersonRequest {
     private String name;
     private String email;
+    private String favoriteProgrammingLanguage;
 
     public AddPersonRequest(String name, String email, String favoriteProgrammingLanguage) {
         this.name = name;
@@ -31,6 +32,4 @@ public class AddPersonRequest {
     public void setFavoriteProgrammingLanguage(String favoriteProgrammingLanguage) {
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
     }
-
-    private String favoriteProgrammingLanguage;
 }

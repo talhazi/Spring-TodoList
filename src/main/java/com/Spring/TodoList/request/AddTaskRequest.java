@@ -1,18 +1,16 @@
 package com.Spring.TodoList.request;
 
-import java.util.Date;
+import com.Spring.TodoList.entity.Task;
 
 public class AddTaskRequest {
+
     private String title;
     private String details;
-    private Date dueDate;
-    private boolean status;
+    private String dueDate;
+    private Task.Status status;
 
-//    public AddTaskRequest() {
-////    }
-    //why do we need an empty constructor?!
 
-    public AddTaskRequest(String title, String details, Date dueDate, boolean status) {
+    public AddTaskRequest(String title, String details, String dueDate, Task.Status status) {
         this.title = title;
         this.details = details;
         this.dueDate = dueDate;
@@ -35,19 +33,19 @@ public class AddTaskRequest {
         this.details = details;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 
-    public boolean getStatus() {
+    public Task.Status getStatus() {
         return this.status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Task.Status status) {
         this.status = status;
     }
 }

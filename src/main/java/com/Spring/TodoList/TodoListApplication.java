@@ -9,8 +9,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+
 
 @SpringBootApplication
 public class TodoListApplication implements CommandLineRunner {
@@ -28,21 +30,25 @@ public class TodoListApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Person person = new Person();
-		person.setName("Tal Hazi");
-		person.setEmail("hazit@post.bgu.ac.il");
-		person.setFavoriteProgrammingLanguage("Java");
+//		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//
+//		Person person = new Person();
+//		person.setName("Tal Hazi");
+//		person.setEmail("hazit@post.bgu.ac.il");
+//		person.setFavoriteProgrammingLanguage("Java");
 
 
-		Task task1 = new Task();
-		task1.setDetails("homework");
-		task1.setDueDate(new GregorianCalendar(2021, Calendar.DECEMBER, 1).getTime());
-		task1.setOwnerId("1");
+//		Task task1 = new Task();
+//		task1.setDetails("homework");
+//
+//		task1.setDueDate(dateFormat.format(Calendar.getInstance().getTime()));
+//		task1.setOwnerId("1");
 
-		person.getTodoList().add(task1);
+//			person.getTodoList().add(task1);
+//		person.addTask(task1);
 
 //		taskRepository.save(task1);
-		personRepository.save(person);
+//		personRepository.save(person);
 
 
 

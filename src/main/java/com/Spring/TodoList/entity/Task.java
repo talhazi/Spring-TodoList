@@ -5,16 +5,19 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-@Configuration
-@EnableAutoConfiguration
-@EntityScan(basePackageClasses=Task.class)
+//@Configuration
+//@EnableAutoConfiguration
+//@EntityScan(basePackageClasses=Task.class)
 public class Task {
 
+    public enum Status{
+        active,
+        done
+    }
+
     @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String title;
@@ -22,15 +25,14 @@ public class Task {
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "ownerId_id", nullable=false)
     private String ownerId;
-    private boolean status = Boolean.FALSE;
+    private Status status = Status.active;
     private String details;
-    private Date dueDate;
+    private String dueDate;
 
     public Task() {
     }
 
-    public Task(String id, String title, boolean status, String details, Date dueDate) {
-        this.id = id; //why?!
+    public Task(String title, Status status, String details, String dueDate) {
         this.title = title;
         this.status = status;
         this.details = details;
@@ -61,15 +63,11 @@ public class Task {
         this.ownerId = ownerId;
     }
 
-    public boolean isStatus() {
-        return this.status;
-    }
-
-    public void setStatus(boolean status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public boolean getStatus() {
+    public Status getStatus() {
         return this.status;
     }
 
@@ -81,11 +79,11 @@ public class Task {
         this.details = details;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 }

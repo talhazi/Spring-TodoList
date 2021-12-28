@@ -10,9 +10,9 @@ import java.util.List;
 
 
 @Entity
-@Configuration
-@EnableAutoConfiguration
-@EntityScan(basePackageClasses=Person.class)
+//@Configuration
+//@EnableAutoConfiguration
+//@EntityScan(basePackageClasses=Person.class)
 public class Person {
 
     @Id
@@ -22,7 +22,7 @@ public class Person {
     private String name;
     private String email;
     private String favoriteProgrammingLanguage;
-    private Integer activeTaskCount = 0;
+    private Integer activeTaskCount;
 
     @OneToMany(
             mappedBy = "ownerId",
@@ -32,13 +32,14 @@ public class Person {
     private List<Task> todoList = new ArrayList<>();
 
     public Person() {
+        this.activeTaskCount = 0;
     }
 
-    public Person(String id, String name, String email, String favoriteProgrammingLanguage) {
-        this.id = id; // why?!
+    public Person(String name, String email, String favoriteProgrammingLanguage) {
         this.name = name;
         this.email = email;
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
+        this.activeTaskCount = 0;
     }
 
     public String getId() { return this.id; }
@@ -77,9 +78,16 @@ public class Person {
         this.todoList = todoList;
     }
 
+    public Integer getActiveTaskCount() { return this.activeTaskCount; }
+
+    public void setActiveTaskCount(Integer activeTaskCount) {
+        this.activeTaskCount = activeTaskCount;
+    }
+
     public void addTask(Task task){
         this.todoList.add(task);
         this.activeTaskCount++;
+        task.setOwnerId(this.id);
     }
 
     public void removeTask(Task task){
