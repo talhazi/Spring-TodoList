@@ -37,37 +37,45 @@ public class PersonController {
         return personRepository.findAll();
     }
 
-    @GetMapping("/{personId}")
-    public Person getPersonById(@PathVariable String personId){
-        return personRepository.findById(personId).orElseThrow(NoSuchElementException::new);
+    @GetMapping("/{Id}")
+    public Person getPersonById(@PathVariable String Id){
+        return personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
     }
 
 
-    @PatchMapping("/{personId}")
-    public void updatePersonById(@PathVariable String personId){
-        Person person = personRepository.findById(personId).orElseThrow(NoSuchElementException::new);
-        //to update details
+    @PatchMapping("/{Id}")
+    public void updatePersonById(@PathVariable String Id, @RequestBody(required = false) AddPersonRequest personRequest){
+        Person person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
+        if(personRequest.getName() != null)
+            person.setName(personRequest.getName());
+        if(personRequest.getEmail() != null)
+            person.setEmail(personRequest.getEmail());
+        if(personRequest.getFavoriteProgrammingLanguage() != null)
+            person.setFavoriteProgrammingLanguage(personRequest.getFavoriteProgrammingLanguage());
+        personRepository.save(person);
     }
 
-    @DeleteMapping("/{personId}")
-    public void deletePerson(@PathVariable String personId){
-        Person person = personRepository.findById(personId).orElseThrow(NoSuchElementException::new);
+    @DeleteMapping("/{Id}")
+    public void deletePerson(@PathVariable String Id){
+        Person person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         personRepository.delete(person);
     }
 
-    @GetMapping("/{personId}/tasks")
-    public List<Task> getAllTasks(@PathVariable String personId){
-        Person person = personRepository.findById(personId).orElseThrow(NoSuchElementException::new);
+    @GetMapping("/{Id}/tasks")
+    public List<Task> getAllTasks(@PathVariable String Id){
+        Person person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         return person.getTodoList();
     }
 
-    @PostMapping("/{personId}/tasks")
-    public void addTask(@PathVariable String personId, @RequestBody AddTaskRequest taskRequest){
-        Person person = personRepository.findById(personId).orElseThrow(NoSuchElementException::new);
+    @PostMapping("/{Id}/tasks")
+    public void addTask(@PathVariable String Id, @RequestBody AddTaskRequest taskRequest){
+        Person person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         Task task = new Task();
         task.setDetails(taskRequest.getDetails());
         task.setDueDate(taskRequest.getDueDate());
-        person.getTodoList().add(task);
+        task.setStatus(taskRequest.getStatus());
+        task.setTitle(taskRequest.getTitle());
+        person.addTask(task);
         taskRepository.save(task);
         personRepository.save(person);
     }

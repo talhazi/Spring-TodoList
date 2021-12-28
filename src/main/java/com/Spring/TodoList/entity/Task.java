@@ -1,16 +1,26 @@
 package com.Spring.TodoList.entity;
 
-import javax.persistence.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Configuration
+@EnableAutoConfiguration
+@EntityScan(basePackageClasses=Task.class)
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
+    private String title;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "ownerId_id", nullable=false)
     private String ownerId;
     private boolean status = Boolean.FALSE;
     private String details;
@@ -19,23 +29,32 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer id, boolean status, String details, Date dueDate) {
-        this.id = id;
+    public Task(String id, String title, boolean status, String details, Date dueDate) {
+        this.id = id; //why?!
+        this.title = title;
         this.status = status;
         this.details = details;
         this.dueDate = dueDate;
     }
 
-    public Integer getId() {
-        return id;
+    public String getId() {
+        return this.id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getOwnerId() {
-        return ownerId;
+        return this.ownerId;
     }
 
     public void setOwnerId(String ownerId) {
@@ -43,7 +62,7 @@ public class Task {
     }
 
     public boolean isStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(boolean status) {
@@ -51,11 +70,11 @@ public class Task {
     }
 
     public boolean getStatus() {
-        return status;
+        return this.status;
     }
 
     public String getDetails() {
-        return details;
+        return this.details;
     }
 
     public void setDetails(String details) {

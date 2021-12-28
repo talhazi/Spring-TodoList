@@ -4,15 +4,13 @@ public class AddPersonRequest {
     private String name;
     private String email;
 
-    public String getName() {
-        return name;
-    }
-
     public AddPersonRequest(String name, String email, String favoriteProgrammingLanguage) {
         this.name = name;
         this.email = email;
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
     }
+
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;

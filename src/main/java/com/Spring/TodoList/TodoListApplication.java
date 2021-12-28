@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 
 @SpringBootApplication
 public class TodoListApplication implements CommandLineRunner {
+
 	@Autowired
 	private PersonRepository personRepository;
 	@Autowired

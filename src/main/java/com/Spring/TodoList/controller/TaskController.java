@@ -22,47 +22,50 @@ public class TaskController {
         this.taskRepository = taskRepository;
     }
 
-    @GetMapping("/{taskId}")
-    public Task getTaskById(@PathVariable String taskId){
-        return taskRepository.findById(taskId).orElseThrow(NoSuchElementException::new);
+    @GetMapping("/{Id}")
+    public Task getTaskById(@PathVariable String Id){
+        return taskRepository.findById(Id).orElseThrow(NoSuchElementException::new);
     }
 
-    @PatchMapping("/{taskId}")
-    public void updateTaskById(@PathVariable String taskId){
-        Task task = taskRepository.findById(taskId).orElseThrow(NoSuchElementException::new);
-        //to update details
+    @PatchMapping("/{Id}")
+    public void updateTaskById(@PathVariable String Id, @RequestBody(required = false) AddTaskRequest taskRequest){
+        Task task = taskRepository.findById(Id).orElseThrow(NoSuchElementException::new);
+        if(taskRequest.getDetails() != null)
+            task.setDetails(taskRequest.getDetails());
+        if(taskRequest.getDueDate() != null)
+            task.setDueDate(taskRequest.getDueDate());
+        taskRepository.save(task);
     }
 
-    @DeleteMapping("{taskId}")
-    public void deleteTask(@PathVariable String taskId){
-        Task task = taskRepository.findById(taskId).orElseThrow(NoSuchElementException::new);
-        String personId = task.getOwnerId();
-        Person person = personRepository.findById(personId).orElseThrow(NoSuchElementException::new);
-        person.getTodoList().remove(task);
+    @DeleteMapping("{Id}")
+    public void deleteTask(@PathVariable String Id){
+        Task task = taskRepository.findById(Id).orElseThrow(NoSuchElementException::new);
+        Person person = personRepository.findById(task.getOwnerId()).orElseThrow(NoSuchElementException::new);
+        person.removeTask(task);
         taskRepository.delete(task);
     }
 
-    @GetMapping("/{taskId}/status")
-    public boolean getTaskStatusById(@PathVariable String taskId){
-        Task task = taskRepository.findById(taskId).orElseThrow(NoSuchElementException::new);
+    @GetMapping("/{Id}/status")
+    public boolean getTaskStatusById(@PathVariable String Id){
+        Task task = taskRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         return task.getStatus();
     }
 
-    @PutMapping("/{taskId}/status")
-    public void setTaskStatusById(@PathVariable String taskId, boolean newStatus){
-        Task task = taskRepository.findById(taskId).orElseThrow(NoSuchElementException::new);
+    @PutMapping("/{Id}/status")
+    public void setTaskStatusById(@PathVariable String Id, boolean newStatus){
+        Task task = taskRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         task.setStatus(newStatus);
     }
 
-    @GetMapping("/{taskId}/owner")
-    public String getTaskOwnerById(@PathVariable String taskId){
-        Task task = taskRepository.findById(taskId).orElseThrow(NoSuchElementException::new);
+    @GetMapping("/{Id}/owner")
+    public String getTaskOwnerById(@PathVariable String Id){
+        Task task = taskRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         return task.getOwnerId();
     }
 
-    @PutMapping("/{taskId}/owner")
-    public void setTaskOwnerById(@PathVariable String taskId, String newOwner){
-        Task task = taskRepository.findById(taskId).orElseThrow(NoSuchElementException::new);
+    @PutMapping("/{Id}/owner")
+    public void setTaskOwnerById(@PathVariable String Id, String newOwner){
+        Task task = taskRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         task.setOwnerId(newOwner);
     }
 
