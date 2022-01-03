@@ -8,6 +8,9 @@ The system itself is a RESTful server for managing people and tasks.
 4. Users should not be able to get the system into any illegal state (a.k.a data corruption).
 5. Data should be stored in some permanent storage. That would normally mean some type of database (either relational or non-relational) but other solutions will also be accepted, as long as they can deal with concurrent I/O operations.
 
+## The System Diagram
+![system-diagram]
+
 ## Running The Project
 1. Clone repo:
    `git clone https://github.com/talhazi/Spring-TodoList.git`
@@ -28,3 +31,5 @@ The system itself is a RESTful server for managing people and tasks.
 ## Contact
 Tal Hazi <> [talhazi114@gmail.com](mailto:talhazi114@gmail.com) <br/>
 Dan Amsalem <> [danams@post.bgu.ac.il](mailto:danams@post.bgu.ac.il)
+
+[system-diagram]: system-diagram.png
