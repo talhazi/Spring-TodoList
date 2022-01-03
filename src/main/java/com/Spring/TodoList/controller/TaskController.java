@@ -38,6 +38,13 @@ public class TaskController {
             task.setDueDate(taskRequest.getDueDate());
         if(taskRequest.getStatus() != null)
             task.setStatus(taskRequest.getStatus());
+            PersonDetails owner = personRepository.findById(task.getOwnerId()).orElseThrow(NoSuchElementException::new);
+            if (task.getStatus().equals(TaskDetails.Status.done)) {
+                owner.setActiveTaskCount(owner.getActiveTaskCount() - 1);
+            }
+            else {
+                owner.setActiveTaskCount(owner.getActiveTaskCount() + 1);
+            }
         if(taskRequest.getTitle() != null)
             task.setTitle(taskRequest.getTitle());
         taskRepository.save(task);
