@@ -1,16 +1,9 @@
 package com.Spring.TodoList.entity;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Configuration;
-
 import javax.persistence.*;
 
 @Entity
-//@Configuration
-//@EnableAutoConfiguration
-//@EntityScan(basePackageClasses=Task.class)
-public class Task {
+public class TaskDetails {
 
     public enum Status{
         active,
@@ -21,18 +14,15 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String title;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "ownerId_id", nullable=false)
     private String ownerId;
     private Status status = Status.active;
     private String details;
     private String dueDate;
 
-    public Task() {
+    public TaskDetails() {
     }
 
-    public Task(String title, Status status, String details, String dueDate) {
+    public TaskDetails(String title, Status status, String details, String dueDate) {
         this.title = title;
         this.status = status;
         this.details = details;

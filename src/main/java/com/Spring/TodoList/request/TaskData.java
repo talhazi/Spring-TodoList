@@ -1,16 +1,16 @@
 package com.Spring.TodoList.request;
 
-import com.Spring.TodoList.entity.Task;
+import com.Spring.TodoList.entity.TaskDetails;
 
-public class AddTaskRequest {
+public class TaskData {
 
     private String title;
     private String details;
     private String dueDate;
-    private Task.Status status;
+    private TaskDetails.Status status;
 
 
-    public AddTaskRequest(String title, String details, String dueDate, Task.Status status) {
+    public TaskData(String title, String details, String dueDate, TaskDetails.Status status) {
         this.title = title;
         this.details = details;
         this.dueDate = dueDate;
@@ -41,11 +41,11 @@ public class AddTaskRequest {
         this.dueDate = dueDate;
     }
 
-    public Task.Status getStatus() {
+    public TaskDetails.Status getStatus() {
         return this.status;
     }
 
-    public void setStatus(Task.Status status) {
+    public void setStatus(TaskDetails.Status status) {
         this.status = status;
     }
 }

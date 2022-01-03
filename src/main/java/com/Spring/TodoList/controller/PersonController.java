@@ -1,16 +1,19 @@
 package com.Spring.TodoList.controller;
 
-import com.Spring.TodoList.entity.Person;
-import com.Spring.TodoList.entity.Task;
+import com.Spring.TodoList.entity.PersonDetails;
+import com.Spring.TodoList.entity.TaskDetails;
 import com.Spring.TodoList.repository.PersonRepository;
 import com.Spring.TodoList.repository.TaskRepository;
-import com.Spring.TodoList.request.AddPersonRequest;
-import com.Spring.TodoList.request.AddTaskRequest;
+import com.Spring.TodoList.request.PersonData;
+import com.Spring.TodoList.request.TaskData;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * Handles all the person requests
+ */
 @RestController
 @RequestMapping("/people")
 public class PersonController {
@@ -24,8 +27,8 @@ public class PersonController {
     }
 
     @PostMapping
-    public Person addPerson(@RequestBody AddPersonRequest personRequest){
-        Person person = new Person();
+    public PersonDetails addPerson(@RequestBody PersonData personRequest){
+        PersonDetails person = new PersonDetails();
         person.setName(personRequest.getName());
         person.setEmail(personRequest.getEmail());
         person.setFavoriteProgrammingLanguage(personRequest.getFavoriteProgrammingLanguage());
@@ -33,19 +36,18 @@ public class PersonController {
     }
 
     @GetMapping
-    public List<Person> getAllPeople(){
+    public List<PersonDetails> getAllPeople(){
         return personRepository.findAll();
     }
 
     @GetMapping("/{Id}")
-    public Person getPersonById(@PathVariable String Id){
+    public PersonDetails getPersonById(@PathVariable String Id){
         return personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
     }
 
-
     @PatchMapping("/{Id}")
-    public void updatePersonById(@PathVariable String Id, @RequestBody(required = false) AddPersonRequest personRequest){
-        Person person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
+    public void updatePersonById(@PathVariable String Id, @RequestBody(required = false) PersonData personRequest){
+        PersonDetails person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         if(personRequest.getName() != null)
             person.setName(personRequest.getName());
         if(personRequest.getEmail() != null)
@@ -57,20 +59,20 @@ public class PersonController {
 
     @DeleteMapping("/{Id}")
     public void deletePerson(@PathVariable String Id){
-        Person person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
+        PersonDetails person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         personRepository.delete(person);
     }
 
     @GetMapping("/{Id}/tasks")
-    public List<Task> getAllTasks(@PathVariable String Id){
-        Person person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
+    public List<TaskDetails> getAllTasks(@PathVariable String Id){
+        PersonDetails person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         return person.getTodoList();
     }
 
     @PostMapping("/{Id}/tasks")
-    public void addTask(@PathVariable String Id, @RequestBody AddTaskRequest taskRequest){
-        Person person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
-        Task task = new Task();
+    public void addTask(@PathVariable String Id, @RequestBody TaskData taskRequest){
+        PersonDetails person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
+        TaskDetails task = new TaskDetails();
         task.setDetails(taskRequest.getDetails());
         task.setDueDate(taskRequest.getDueDate());
         task.setStatus(taskRequest.getStatus());
@@ -79,5 +81,4 @@ public class PersonController {
         taskRepository.save(task);
         personRepository.save(person);
     }
-
 }

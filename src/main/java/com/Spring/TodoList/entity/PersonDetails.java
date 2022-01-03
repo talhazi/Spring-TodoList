@@ -1,24 +1,15 @@
 package com.Spring.TodoList.entity;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Configuration;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
-//@Configuration
-//@EnableAutoConfiguration
-//@EntityScan(basePackageClasses=Person.class)
-public class Person {
+public class PersonDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-
     private String name;
     private String email;
     private String favoriteProgrammingLanguage;
@@ -29,13 +20,13 @@ public class Person {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Task> todoList = new ArrayList<>();
+    private List<TaskDetails> todoList = new ArrayList<>();
 
-    public Person() {
+    public PersonDetails() {
         this.activeTaskCount = 0;
     }
 
-    public Person(String name, String email, String favoriteProgrammingLanguage) {
+    public PersonDetails(String name, String email, String favoriteProgrammingLanguage) {
         this.name = name;
         this.email = email;
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
@@ -70,11 +61,11 @@ public class Person {
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
     }
 
-    public List<Task> getTodoList() {
+    public List<TaskDetails> getTodoList() {
         return this.todoList;
     }
 
-    public void setTodoList(List<Task> todoList) {
+    public void setTodoList(List<TaskDetails> todoList) {
         this.todoList = todoList;
     }
 
@@ -84,13 +75,13 @@ public class Person {
         this.activeTaskCount = activeTaskCount;
     }
 
-    public void addTask(Task task){
+    public void addTask(TaskDetails task){
         this.todoList.add(task);
         this.activeTaskCount++;
         task.setOwnerId(this.id);
     }
 
-    public void removeTask(Task task){
+    public void removeTask(TaskDetails task){
         this.todoList.remove(task);
         this.activeTaskCount--;
     }
