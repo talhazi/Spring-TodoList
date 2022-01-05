@@ -1,11 +1,13 @@
 package com.Spring.TodoList.request;
 
-public class AddPersonRequest {
+import javax.validation.constraints.Email;
+
+public class PersonData {
     private String name;
     private String email;
     private String favoriteProgrammingLanguage;
 
-    public AddPersonRequest(String name, String email, String favoriteProgrammingLanguage) {
+    public PersonData(String name, @Email String email, String favoriteProgrammingLanguage) {
         this.name = name;
         this.email = email;
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
