@@ -25,9 +25,9 @@ public class Person {
     private Integer activeTaskCount;
 
     @OneToMany(
-            mappedBy = "ownerId",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+        mappedBy = "ownerId",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
     )
     private List<Task> todoList = new ArrayList<>();
 
