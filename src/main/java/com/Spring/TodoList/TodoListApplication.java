@@ -9,13 +9,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+/**
+ * The class that runs the whole todoList application
+ */
 @SpringBootApplication
 public class TodoListApplication implements CommandLineRunner {
 
-//	@Autowired
 	private PersonRepository personRepository;
-//	@Autowired
+
 	private TaskRepository taskRepository;
 
 
@@ -24,7 +25,7 @@ public class TodoListApplication implements CommandLineRunner {
 	}
 
 	@Override // where is the exception thrown?
-	public void run(String... args) throws Exception {
+	public void run(String... args){
 
 //		for (int i = 0; i < 100; i++) {
 //			int finalI = i;

@@ -17,7 +17,7 @@ public class PersonData {
     private String favoriteProgrammingLanguage;
 
     /**
-     * Constructor for the class
+     * Constructor for the PersonData class
      *
      * @param name may be null
      * @param email must be in Email format("NNNN@MMM.XX") ,may be null
