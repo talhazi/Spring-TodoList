@@ -6,7 +6,7 @@ The system itself is a RESTful server for managing people and tasks.
 2. The status of each task is either  done  or  active.
 3. Each person has zero or more tasks.
 4. Users should not be able to get the system into any illegal state (a.k.a data corruption).
-5. Data should be stored in some permanent storage. That would normally mean some type of database (either relational or non-relational) but other solutions will also be accepted, as long as they can deal with concurrent I/O operations.
+5. Data stored in some permanent storage (H2 Database).
 
 ## The System Diagram
 ![system-diagram]
@@ -18,7 +18,7 @@ The system itself is a RESTful server for managing people and tasks.
 3. RUN.
 4. To the API specification and managing requests go to: [Swagger-UI](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config).
 5. To follow the Database go to: [H2-console](http://localhost:8080/h2-console/), and add the following fields: <br/>
-   Driver Class: `org.h2.Driver`<br/> JDBC URL: `jdbc:h2:mem:todoDB`
+   Driver Class: `org.h2.Driver`<br/> JDBC URL: `jdbc:h2:file:./todoDB`
 
 ## Built With
 * [Spring Framwork](https://spring.io/)
