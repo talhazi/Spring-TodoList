@@ -2,6 +2,8 @@ package com.Spring.TodoList.request;
 
 import com.Spring.TodoList.controller.TaskController;
 import com.Spring.TodoList.entity.TaskDetails;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
@@ -28,7 +30,15 @@ public class TaskData {
     public TaskData(String title, String details, String dueDate, TaskDetails.Status status) {
         this.title = title;
         this.details = details;
-        this.dueDate = dueDate;
+
+        DateValidator validator = new DateValidatorUsingLocalDate("yyyy-MM-dd");
+        if (validator.isValid(dueDate)){
+            this.dueDate = dueDate;
+        }
+        else{
+            throw new IllegalArgumentException("due date not valid format");
+        }
+        
         this.status = status;
     }
 
