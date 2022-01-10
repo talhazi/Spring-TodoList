@@ -38,7 +38,7 @@ public class TaskData {
         else{
             throw new IllegalArgumentException("due date not valid format");
         }
-        
+
         this.status = status;
     }
 
