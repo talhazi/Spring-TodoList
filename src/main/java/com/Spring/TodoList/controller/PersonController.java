@@ -8,6 +8,7 @@ import com.Spring.TodoList.request.PersonData;
 import com.Spring.TodoList.request.TaskData;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -20,6 +21,7 @@ public class PersonController {
 
     private PersonRepository personRepository;
     private TaskRepository taskRepository;
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Constructor for the PersonController class
@@ -122,7 +124,7 @@ public class PersonController {
      * @param taskRequest the body of the request is mapped to a {@link TaskData} object, not null
      */
     @PostMapping("/{Id}/tasks")
-    public void addTask(@PathVariable String Id, @RequestBody TaskData taskRequest){
+    public void addTask(@PathVariable String Id, @RequestBody TaskData taskRequest) {
         PersonDetails person = personRepository.findById(Id).orElseThrow(NoSuchElementException::new);
         TaskDetails task = new TaskDetails();
         task.setDetails(taskRequest.getDetails());

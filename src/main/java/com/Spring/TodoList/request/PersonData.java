@@ -4,6 +4,8 @@ import javax.validation.constraints.Email;
 import com.Spring.TodoList.entity.PersonDetails;
 import com.Spring.TodoList.controller.PersonController;
 
+import java.util.regex.Pattern;
+
 /**
  * The PersonData class serves as an aid for the ORM technique that the system uses, mapping between the
  * {@link PersonDetails} class and PersonDetails entity. Once the {@link PersonController} gets a request with a body,
@@ -23,8 +25,11 @@ public class PersonData {
      * @param email must be in Email format("NNNN@MMM.XX") ,may be null
      * @param favoriteProgrammingLanguage may be null
      */
-    public PersonData(String name, @Email String email, String favoriteProgrammingLanguage) {
+    public PersonData(String name,String email, String favoriteProgrammingLanguage) throws Exception {
         this.name = name;
+        if(!Pattern.matches("^[\\w.-]+@[[\\w-]+.]+[\\w-]$",email)){
+            throw new Exception("not a valid email");
+        }
         this.email = email;
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
     }

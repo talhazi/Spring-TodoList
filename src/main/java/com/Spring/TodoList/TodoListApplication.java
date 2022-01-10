@@ -1,10 +1,7 @@
 package com.Spring.TodoList;
 
-import com.Spring.TodoList.entity.PersonDetails;
-import com.Spring.TodoList.entity.TaskDetails;
 import com.Spring.TodoList.repository.PersonRepository;
 import com.Spring.TodoList.repository.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
