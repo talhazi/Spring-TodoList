@@ -24,7 +24,7 @@ public class TaskData {
      *
      * @param title may be null
      * @param details may be null
-     * @param dueDate may be null
+     * @param dueDate must be according to the {@link DateValidatorUsingLocalDate} format, may be null
      * @param status may be null
      */
     public TaskData(String title, String details, String dueDate, TaskDetails.Status status) {
