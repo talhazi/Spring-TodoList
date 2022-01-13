@@ -1,7 +1,6 @@
 package com.Spring.TodoList.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class PersonDetails {
      * @param email must be in Email format("NNNN@MMM.XX") ,may be null
      * @param favoriteProgrammingLanguage may be null
      */
-    public PersonDetails(String name, @Email String email, String favoriteProgrammingLanguage) {
+    public PersonDetails(String name, String email, String favoriteProgrammingLanguage) {
         this.name = name;
         this.email = email;
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;

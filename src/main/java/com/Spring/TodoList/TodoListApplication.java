@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TodoListApplication implements CommandLineRunner {
 
 	private PersonRepository personRepository;
-
 	private TaskRepository taskRepository;
 
 
@@ -21,25 +20,8 @@ public class TodoListApplication implements CommandLineRunner {
 		SpringApplication.run(TodoListApplication.class, args);
 	}
 
-	@Override // where is the exception thrown?
+	@Override
 	public void run(String... args){
 
-//		for (int i = 0; i < 100; i++) {
-//			int finalI = i;
-//			new Thread(() -> {
-//				String name = String.format("Name%d", finalI);
-//				String email = String.format("Email%d@gmail.com", finalI);
-//				String fav = String.format("Java%d", finalI);
-//				PersonDetails p = new PersonDetails(name, email, fav);
-//
-//				String date = "2022-01-05";
-//				String details = String.format("Details%d", finalI);
-//				TaskDetails.Status status = TaskDetails.Status.active;
-//				TaskDetails t = new TaskDetails(name, status, details, date);
-//
-//				personRepository.save(p);
-//				taskRepository.save(t);
-//			}).start();
-//		}
 	}
 }
